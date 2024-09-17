@@ -14,7 +14,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+import Toast from "react-native-toast-message";
 interface RootStackParamList {
   Screen_02: undefined;
   Screen_03: {
@@ -52,7 +52,18 @@ const Screen03: React.FC = () => {
     const price = parseFloat(cur.price.replace("$", "").replace(",", ""));
     return acc + price * cur.quantity;
   }, 0);
-
+  const handleCheckout = () => {
+    Toast.show({
+      type: "success",
+      position: "top",
+      text1: "Thanh toán thành công!",
+      text2: "Cảm ơn bạn đã mua sắm với chúng tôi.",
+      visibilityTime: 4000,
+      autoHide: true,
+      topOffset: 30,
+      bottomOffset: 40,
+    });
+  };
   return (
     <View style={styles.container}>
       {/* navigation */}
@@ -155,13 +166,7 @@ const Screen03: React.FC = () => {
           {/* sum prices */}
           <Text style={styles.text}>{totalPrice.toFixed(2)} $</Text>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            alert("Checkout");
-            navigation.navigate("Screen_02");
-          }}
-        >
+        <TouchableOpacity style={styles.button} onPress={handleCheckout}>
           <Text style={styles.buttonText}>Checkout</Text>
         </TouchableOpacity>
       </View>
