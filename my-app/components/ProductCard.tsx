@@ -5,7 +5,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 interface ProductCardProps {
   name: string;
   price: string;
-  imageSource: any; // You can specify this as ImageSourcePropType if you want
+  imageSource: any;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -17,7 +17,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <View style={styles.card}>
       <Image source={imageSource} style={styles.image} />
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>${price}</Text>
+      <Text style={styles.price}>{price}</Text>
     </View>
   );
 };
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: 10,
-    width: "100%", // This will ensure it fits within the parent container
+    width: "100%",
     alignItems: "center",
   },
   image: {

@@ -18,39 +18,100 @@ const allProducts = [
     key: "1",
     type: "Vegetable",
     name: "Apple",
-    price: "28.00",
+    price: "$28.00",
     image: require("../assets/data/Image 106.png"),
+    quantity: 2,
   },
   {
     key: "2",
     type: "Seafood",
     name: "Seafood 1",
-    price: "28.00",
+    price: "$28.00",
     image: require("../assets/data/Image 107.png"),
+    quantity: 1,
   },
   {
     key: "3",
     type: "Drink",
     name: "Drink 1",
-    price: "28.00",
+    price: "$28.00",
     image: require("../assets/data/Image 103.png"),
+    quantity: 3,
+  },
+  {
+    key: "4",
+    type: "Vegetable",
+    name: "Apple 1",
+    price: "$58.00",
+    image: require("../assets/data/Image 101.png"),
+    quantity: 1,
+  },
+  {
+    key: "5",
+    type: "Seafood",
+    name: "Orange",
+    price: "$8.00",
+    image: require("../assets/data/Image 102.png"),
+    quantity: 5,
+  },
+  {
+    key: "6",
+    type: "Seafood",
+    name: "Orange 2",
+    price: "$20.00",
+    image: require("../assets/data/Image 102 (1).png"),
+    quantity: 4,
+  },
+  {
+    key: "6",
+    type: "Vegetable",
+    name: "Apple 2",
+    price: "$18.00",
+    image: require("../assets/data/Image 101 (1).png"),
+    quantity: 3,
+  },
+  {
+    key: "7",
+    type: "Drink",
+    name: "Drink",
+    price: "$40.00",
+    image: require("../assets/data/Image 103 (1).png"),
+    quantity: 2,
+  },
+  {
+    key: "8",
+    type: "Vegetable",
+    name: "Butter",
+    price: "$40.00",
+    image: require("../assets/data/Image 105.png"),
+    quantity: 6,
   },
 ];
 
 interface RootStackParamList {
   Screen_01: undefined;
+  Screen_03: {
+    productData: {
+      key: string;
+      type: string;
+      name: string;
+      price: string;
+      image: any;
+      quantity: number;
+    }[];
+  };
 }
 
 const Screen02: React.FC = () => {
-  const [selectedFilter, setSelectedFilter] = useState("Vegetable");
-  const [filteredData, setFilteredData] = useState(
-    allProducts.filter((product) => product.type === "Vegetable")
-  );
+  const [selectedFilter, setSelectedFilter] = useState("");
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handleFilterPress = (filter: string) => {
     setSelectedFilter(filter);
-    setFilteredData(allProducts.filter((product) => product.type === filter));
+  };
+
+  const handleSeeAllPress = () => {
+    setSelectedFilter("");
   };
 
   const handleImagePress = () => {
@@ -67,6 +128,11 @@ const Screen02: React.FC = () => {
     </View>
   );
 
+  // Nếu selectedFilter rỗng, hiển thị toàn bộ sản phẩm
+  const filteredData = selectedFilter
+    ? allProducts.filter((product) => product.type === selectedFilter)
+    : allProducts;
+
   return (
     <ScrollView style={styles.container}>
       {/* Header section with navigation icons */}
@@ -77,10 +143,18 @@ const Screen02: React.FC = () => {
             style={styles.icon}
           />
         </TouchableOpacity>
-        <Image
-          source={require("../assets/data/Image 182.png")}
-          style={styles.icon}
-        />
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Screen_03", {
+              productData: [...allProducts],
+            })
+          }
+        >
+          <Image
+            source={require("../assets/data/Image 182.png")}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
       </View>
 
       {/* Search Bar */}
@@ -114,7 +188,9 @@ const Screen02: React.FC = () => {
       {/* Title */}
       <View style={styles.header}>
         <Text style={styles.title}>Order your favorite!</Text>
-        <Text style={styles.seeAll}>See all</Text>
+        <TouchableOpacity onPress={handleSeeAllPress}>
+          <Text style={styles.seeAll}>See all</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Product Grid */}
@@ -132,7 +208,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F0F0F0",
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    flexDirection: "column",
   },
   headerIcons: {
     flexDirection: "row",
@@ -162,14 +240,14 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
-    backgroundColor: "#00FF00",
+    backgroundColor: "#E0E0E0",
     borderRadius: 20,
   },
   selectedFilterButton: {
-    backgroundColor: "#32CD32",
+    backgroundColor: "#00FF00",
   },
   filterButtonText: {
-    color: "#fff",
+    color: "#000",
     fontWeight: "bold",
   },
   selectedFilterButtonText: {
@@ -194,6 +272,7 @@ const styles = StyleSheet.create({
   productCard: {
     width: (Dimensions.get("window").width - 40) / 2,
     marginBottom: 20,
+    marginLeft: 10,
   },
 });
 
