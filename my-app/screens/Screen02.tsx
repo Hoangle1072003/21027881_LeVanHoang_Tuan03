@@ -101,29 +101,42 @@ interface RootStackParamList {
     }[];
   };
 }
+interface Product {
+  key: string;
+  type: string;
+  name: string;
+  price: string;
+  image: any;
+  quantity: number;
+}
 
 const Screen02: React.FC = () => {
+  const [cartItems, setCartItems] = useState<Product[]>([]);
   const [selectedFilter, setSelectedFilter] = useState("");
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
   const handleFilterPress = (filter: string) => {
     setSelectedFilter(filter);
   };
-
+  const handleAddToCart = (item: Product) => {
+    setCartItems((prevItems) => [...prevItems, item]);
+  };
   const handleSeeAllPress = () => {
     setSelectedFilter("");
   };
-
+  const handleCartPress = () => {
+    navigation.navigate("Screen_03", { productData: cartItems });
+  };
   const handleImagePress = () => {
     navigation.navigate("Screen_01");
   };
 
-  const renderProductCard = ({ item }: { item: any }) => (
+  const renderProductCard = ({ item }: { item: Product }) => (
     <View style={styles.productCard}>
       <ProductCard
         name={item.name}
         price={item.price}
         imageSource={item.image}
+        onPress={() => handleAddToCart(item)} // Add this line
       />
     </View>
   );
@@ -143,18 +156,12 @@ const Screen02: React.FC = () => {
             style={styles.icon}
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("Screen_03", {
-              productData: [...allProducts],
-            })
-          }
-        >
-          <Image
-            source={require("../assets/data/Image 182.png")}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
+        <TouchableOpacity onPress={handleCartPress}>
+  <Image
+    source={require("../assets/data/Image 182.png")}
+    style={styles.icon}
+  />
+</TouchableOpacity>
       </View>
 
       {/* Search Bar */}

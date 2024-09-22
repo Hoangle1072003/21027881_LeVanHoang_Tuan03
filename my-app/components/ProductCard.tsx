@@ -1,24 +1,26 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 // Define the props for the ProductCard
 interface ProductCardProps {
   name: string;
   price: string;
   imageSource: any;
+  onPress?: () => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   name,
   price,
   imageSource,
+  onPress,
 }) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress}>  
       <Image source={imageSource} style={styles.image} />
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.price}>{price}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
