@@ -19,7 +19,7 @@ const allProducts = [
     type: "Vegetable",
     name: "Apple",
     price: "$28.00",
-    image: require("../assets/data/Image 106.png"),
+    image: require("../assets/data/Image106.png"),
     quantity: 2,
   },
   {
@@ -27,7 +27,7 @@ const allProducts = [
     type: "Seafood",
     name: "Seafood 1",
     price: "$28.00",
-    image: require("../assets/data/Image 107.png"),
+    image: require("../assets/data/Image107.png"),
     quantity: 1,
   },
   {
@@ -35,7 +35,7 @@ const allProducts = [
     type: "Drink",
     name: "Drink 1",
     price: "$28.00",
-    image: require("../assets/data/Image 103.png"),
+    image: require("../assets/data/Image103.png"),
     quantity: 3,
   },
   {
@@ -43,7 +43,7 @@ const allProducts = [
     type: "Vegetable",
     name: "Apple 1",
     price: "$58.00",
-    image: require("../assets/data/Image 101.png"),
+    image: require("../assets/data/Image101.png"),
     quantity: 1,
   },
   {
@@ -51,7 +51,7 @@ const allProducts = [
     type: "Seafood",
     name: "Orange",
     price: "$8.00",
-    image: require("../assets/data/Image 102.png"),
+    image: require("../assets/data/Image102.png"),
     quantity: 5,
   },
   {
@@ -59,7 +59,7 @@ const allProducts = [
     type: "Seafood",
     name: "Orange 2",
     price: "$20.00",
-    image: require("../assets/data/Image 102 (1).png"),
+    image: require("../assets/data/Image102(1).png"),
     quantity: 4,
   },
   {
@@ -67,7 +67,7 @@ const allProducts = [
     type: "Vegetable",
     name: "Apple 2",
     price: "$18.00",
-    image: require("../assets/data/Image 101 (1).png"),
+    image: require("../assets/data/Image101(1).png"),
     quantity: 3,
   },
   {
@@ -75,7 +75,7 @@ const allProducts = [
     type: "Drink",
     name: "Drink",
     price: "$40.00",
-    image: require("../assets/data/Image 103 (1).png"),
+    image: require("../assets/data/Image103(1).png"),
     quantity: 2,
   },
   {
@@ -83,7 +83,7 @@ const allProducts = [
     type: "Vegetable",
     name: "Butter",
     price: "$40.00",
-    image: require("../assets/data/Image 105.png"),
+    image: require("../assets/data/Image105.png"),
     quantity: 6,
   },
 ];
@@ -119,6 +119,7 @@ const Screen02: React.FC = () => {
   };
   const handleAddToCart = (item: Product) => {
     setCartItems((prevItems) => [...prevItems, item]);
+    navigation.navigate("Screen_03", { productData: cartItems });
   };
   const handleSeeAllPress = () => {
     setSelectedFilter("");
@@ -152,16 +153,16 @@ const Screen02: React.FC = () => {
       <View style={styles.headerIcons}>
         <TouchableOpacity onPress={handleImagePress}>
           <Image
-            source={require("../assets/data/Image 183.png")}
+            source={require("../assets/data/Image183.png")}
             style={styles.icon}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCartPress}>
-  <Image
-    source={require("../assets/data/Image 182.png")}
-    style={styles.icon}
-  />
-</TouchableOpacity>
+          <Image
+            source={require("../assets/data/Image182.png")}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
       </View>
 
       {/* Search Bar */}

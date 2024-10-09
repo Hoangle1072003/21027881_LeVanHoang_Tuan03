@@ -71,7 +71,7 @@ const Screen03: React.FC = () => {
         <TouchableOpacity onPress={() => navigation.navigate("Screen_02")}>
           <Image
             style={styles.icon}
-            source={require("../assets/data/Image 183.png")}
+            source={require("../assets/data/Image183.png")}
           />
         </TouchableOpacity>
       </View>
@@ -141,9 +141,9 @@ const Screen03: React.FC = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Image source={require("../assets/data/Image 175.png")} />
+                <Image source={require("../assets/data/Image175.png")} />
                 <Text style={styles.text}>{item.quantity}</Text>
-                <Image source={require("../assets/data/Image 176.png")} />
+                <Image source={require("../assets/data/Image176.png")} />
               </View>
             </View>
           )}

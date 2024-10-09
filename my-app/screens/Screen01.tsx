@@ -10,8 +10,8 @@ import {
 import CustomButton from "../components/CustomButton";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 
-const image1 = require("../assets/data/Image 95.png");
-const image2 = require("../assets/data/Image 97.png");
+const image1 = require("../assets/data/Image95.png");
+const image2 = require("../assets/data/Image97.png");
 const image3 = require("../assets/data/Image_96.png");
 
 type RootStackParamList = {
