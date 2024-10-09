@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F0F0F0",
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 30,
     flexDirection: "column",
   },
   headerIcons: {
