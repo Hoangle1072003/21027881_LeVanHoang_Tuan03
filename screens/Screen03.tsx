@@ -68,7 +68,7 @@ const Screen03: React.FC = () => {
     <View style={styles.container}>
       {/* navigation */}
       <View>
-        <TouchableOpacity onPress={() => navigation.navigate("Screen_02")}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
             style={styles.icon}
             source={require("../assets/data/Image183.png")}
